@@ -2,95 +2,124 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
+    /* Core brand colors */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 240 10% 10%;
 
+    /* Lavender surface */
+    --surface: 280 100% 98%;
+    --surface-foreground: 240 10% 10%;
+
+    /* Primary purple */
+    --primary: 266 89% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary */
+    --secondary: 280 20% 96%;
+    --secondary-foreground: 240 10% 20%;
+
+    /* Muted */
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 5% 46%;
+
+    /* Accent */
+    --accent: 266 89% 95%;
+    --accent-foreground: 266 89% 40%;
+
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Card */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 240 10% 10%;
 
+    /* Popover */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 240 10% 10%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Border & Input */
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 266 89% 50%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Radius */
+    --radius: 1rem;
+    --radius-hero: 1.5rem;
+    --radius-sm: 0.5rem;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
+    /* Sidebar */
     --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5% 26%;
+    --sidebar-primary: 266 89% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 280 100% 98%;
+    --sidebar-accent-foreground: 266 89% 40%;
+    --sidebar-border: 240 6% 90%;
+    --sidebar-ring: 266 89% 50%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Badge variants */
+    --badge-hot: 0 84% 60%;
+    --badge-new: 199 89% 48%;
+    --badge-recommend: 266 89% 50%;
+    --badge-popular: 45 93% 47%;
+    --badge-core: 142 71% 45%;
+    --badge-intro: 280 60% 65%;
+    --badge-kor: 240 5% 35%;
 
-    --sidebar-primary: 240 5.9% 10%;
+    /* Gradients */
+    --gradient-hero: linear-gradient(180deg, hsla(0, 0%, 0%, 0) 0%, hsla(0, 0%, 0%, 0.7) 100%);
+    --gradient-newsletter: linear-gradient(135deg, hsl(266 89% 50%) 0%, hsl(280 70% 60%) 100%);
+    --gradient-card-hover: linear-gradient(180deg, hsla(266, 89%, 50%, 0.05) 0%, hsla(266, 89%, 50%, 0) 100%);
 
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Shadows */
+    --shadow-card: 0 1px 3px hsla(240, 10%, 10%, 0.08), 0 4px 12px hsla(240, 10%, 10%, 0.04);
+    --shadow-card-hover: 0 4px 12px hsla(240, 10%, 10%, 0.12), 0 8px 24px hsla(240, 10%, 10%, 0.08);
+    --shadow-hero: 0 8px 32px hsla(240, 10%, 10%, 0.16);
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 240 10% 6%;
+    --foreground: 0 0% 98%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --surface: 260 20% 12%;
+    --surface-foreground: 0 0% 98%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --primary: 266 89% 60%;
+    --primary-foreground: 0 0% 100%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 240 10% 15%;
+    --secondary-foreground: 0 0% 90%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --muted: 240 10% 15%;
+    --muted-foreground: 240 5% 55%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 266 50% 20%;
+    --accent-foreground: 266 89% 80%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --card: 240 10% 8%;
+    --card-foreground: 0 0% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --popover: 240 10% 8%;
+    --popover-foreground: 0 0% 98%;
+
+    --border: 240 10% 18%;
+    --input: 240 10% 18%;
+    --ring: 266 89% 60%;
+
+    --sidebar-background: 240 10% 8%;
+    --sidebar-foreground: 240 5% 80%;
+    --sidebar-primary: 266 89% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 260 20% 15%;
+    --sidebar-accent-foreground: 266 89% 80%;
+    --sidebar-border: 240 10% 18%;
+    --sidebar-ring: 266 89% 60%;
   }
 }
 
@@ -99,7 +128,141 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer components {
+  /* Card variants */
+  .card-base {
+    @apply bg-card rounded-2xl border border-border overflow-hidden transition-all duration-200;
+    box-shadow: var(--shadow-card);
+  }
+
+  .card-base:hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .card-hero {
+    @apply bg-card overflow-hidden transition-all duration-300;
+    border-radius: var(--radius-hero);
+    box-shadow: var(--shadow-hero);
+  }
+
+  /* Badge variants */
+  .badge-hot {
+    @apply bg-red-500 text-white;
+  }
+
+  .badge-new {
+    @apply bg-sky-500 text-white;
+  }
+
+  .badge-recommend {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  .badge-popular {
+    @apply bg-amber-500 text-white;
+  }
+
+  .badge-core {
+    @apply bg-emerald-500 text-white;
+  }
+
+  .badge-intro {
+    @apply bg-purple-400 text-white;
+  }
+
+  .badge-kor {
+    @apply bg-muted text-muted-foreground;
+  }
+
+  /* Chip styles */
+  .chip {
+    @apply inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer select-none;
+    @apply bg-muted text-muted-foreground hover:bg-accent hover:text-accent-foreground;
+  }
+
+  .chip-active {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  /* Section container */
+  .section-container {
+    @apply px-4 md:px-6 lg:px-8 py-12 md:py-16;
+  }
+
+  /* Gradient overlays */
+  .gradient-hero-overlay {
+    background: var(--gradient-hero);
+  }
+
+  .gradient-newsletter {
+    background: var(--gradient-newsletter);
+  }
+
+  /* Scroll area hide scrollbar on mobile */
+  .scroll-hide-mobile::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scroll-hide-mobile {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Lavender surface background */
+  .bg-surface {
+    @apply bg-purple-50/50;
+  }
+
+  /* Text clamp utilities */
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+@layer utilities {
+  /* Spacing utilities for airy layouts */
+  .section-padding {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  .container-padding {
+    @apply px-4 md:px-6 lg:px-8;
+  }
+
+  /* Gap utilities */
+  .gap-section {
+    @apply gap-6 md:gap-8;
+  }
+
+  .gap-cards {
+    @apply gap-4 md:gap-6;
   }
 }
