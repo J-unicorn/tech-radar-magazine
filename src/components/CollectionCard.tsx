@@ -20,24 +20,24 @@ export function CollectionCard({ collection, isBookmarked, onToggleBookmark, sho
   const totalComments = items.reduce((acc, item) => acc + (item?.statsMock.comments || 0), 0);
 
   return (
-    <div className="card-base overflow-hidden group hover:border-primary/20">
-      {/* Cover Image */}
-      <Link to={`/collections/${collection.id}`} className="block relative aspect-[16/10] overflow-hidden">
+    <div className="card-base overflow-hidden group hover:shadow-md">
+      {/* Cover Image - 16:9 aspect ratio */}
+      <Link to={`/collections/${collection.id}`} className="block relative aspect-[16/9] overflow-hidden">
         <img
-          src={firstItem?.thumb || "https://placehold.co/640x400?text=Collection"}
+          src={firstItem?.thumb || "https://placehold.co/640x360?text=Collection"}
           alt={collection.title}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
         
-        {/* Item count badge */}
-        <div className="absolute top-3 left-3 px-2 py-1 bg-black/60 backdrop-blur-sm rounded-lg text-white text-xs font-medium">
+        {/* Item count badge - top left */}
+        <div className="absolute top-3 left-3 px-2 py-1 bg-black/60 backdrop-blur-sm rounded-lg text-white text-[12px] font-medium">
           {collection.itemIds.length}개 콘텐츠
         </div>
 
         {/* AD badge */}
         {showAd && (
-          <div className="absolute top-3 right-12 px-2 py-1 bg-muted/80 backdrop-blur-sm rounded text-xs font-medium text-muted-foreground">
+          <div className="absolute top-3 right-12 px-2 py-1 bg-surface/80 backdrop-blur-sm rounded text-[12px] font-medium text-muted-app">
             AD
           </div>
         )}
@@ -47,7 +47,7 @@ export function CollectionCard({ collection, isBookmarked, onToggleBookmark, sho
           variant="ghost"
           size="icon"
           className={`absolute top-3 right-3 h-8 w-8 rounded-full bg-white/20 backdrop-blur-sm ${
-            isBookmarked ? "text-primary" : "text-white"
+            isBookmarked ? "text-accent" : "text-white"
           } hover:bg-white/30`}
           onClick={(e) => {
             e.preventDefault();
@@ -61,14 +61,14 @@ export function CollectionCard({ collection, isBookmarked, onToggleBookmark, sho
       {/* Content */}
       <div className="p-4">
         <Link to={`/collections/${collection.id}`}>
-          <h3 className="font-semibold text-foreground line-clamp-2 hover:text-primary transition-colors">
+          <h3 className="text-[16px] leading-[24px] font-semibold text-app line-clamp-2 hover:text-accent transition-colors">
             {collection.title}
           </h3>
         </Link>
-        <p className="text-sm text-muted-foreground mt-1">{collection.subtitle}</p>
+        <p className="text-[12px] leading-[18px] text-muted-app mt-1">{collection.subtitle}</p>
         
         {/* Stats */}
-        <div className="flex items-center gap-3 mt-3 text-xs text-muted-foreground">
+        <div className="flex items-center gap-3 mt-3 text-[12px] text-muted-app">
           <span className="flex items-center gap-1">
             <Eye className="h-3.5 w-3.5" />
             {formatViews(totalViews)}

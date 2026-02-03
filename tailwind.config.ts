@@ -7,9 +7,9 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: "24px",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1200px",
       },
     },
     extend: {
@@ -17,11 +17,11 @@ export default {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        background: "hsl(var(--bg))",
+        foreground: "hsl(var(--text))",
         surface: {
           DEFAULT: "hsl(var(--surface))",
-          foreground: "hsl(var(--surface-foreground))",
+          foreground: "hsl(var(--text))",
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",
@@ -37,7 +37,7 @@ export default {
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          foreground: "hsl(var(--muted))",
         },
         accent: {
           DEFAULT: "hsl(var(--accent))",

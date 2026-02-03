@@ -4,13 +4,13 @@ import { Badge } from "@/components/ui/badge";
 import { Item, getKindLabel, getChipById } from "@/data/mockData";
 import { Link } from "react-router-dom";
 
-interface FeedCardProps {
+interface ContentListCardProps {
   item: Item;
   isBookmarked: boolean;
   onToggleBookmark: (id: string) => void;
 }
 
-export function FeedCard({ item, isBookmarked, onToggleBookmark }: FeedCardProps) {
+export function ContentListCard({ item, isBookmarked, onToggleBookmark }: ContentListCardProps) {
   const getBadgeClass = (badge: string) => {
     const lower = badge.toLowerCase();
     if (lower === "hot") return "badge-hot";
@@ -26,10 +26,10 @@ export function FeedCard({ item, isBookmarked, onToggleBookmark }: FeedCardProps
   const KindIcon = item.kind === "video" ? Play : item.kind === "doc" ? BookOpen : FileText;
 
   return (
-    <div className="card-base p-4 flex gap-4 hover:shadow-md">
-      {/* Thumbnail */}
+    <div className="card-base p-4 flex gap-4 hover:border-accent/20">
+      {/* Thumbnail - 160x90 (16:9) */}
       <Link to={`/content/${item.id}`} className="flex-shrink-0">
-        <div className="relative w-32 h-20 md:w-40 md:h-24 rounded-lg overflow-hidden bg-surface">
+        <div className="relative w-[160px] h-[90px] rounded-lg overflow-hidden bg-surface">
           <img
             src={item.thumb}
             alt={item.title}
@@ -51,36 +51,28 @@ export function FeedCard({ item, isBookmarked, onToggleBookmark }: FeedCardProps
       {/* Content */}
       <div className="flex-1 flex flex-col justify-between min-w-0">
         <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="flex items-center gap-1 text-[12px] text-muted-app">
-              <KindIcon className="w-3 h-3" />
-              {getKindLabel(item.kind)}
-            </span>
-            {item.badges.map(badge => (
-              <Badge key={badge} variant="secondary" className={`text-[12px] px-1.5 py-0 ${getBadgeClass(badge)}`}>
-                {badge}
-              </Badge>
-            ))}
-          </div>
           <Link to={`/content/${item.id}`}>
             <h3 className="text-[16px] leading-[24px] font-semibold text-app line-clamp-2 hover:text-accent transition-colors">
               {item.title}
             </h3>
           </Link>
-          <p className="text-[14px] leading-[22px] text-muted-app mt-1 line-clamp-1 hidden md:block">
+          <p className="text-[14px] leading-[22px] text-muted-app mt-1 line-clamp-2">
             {item.summary}
           </p>
         </div>
 
         <div className="flex items-center justify-between mt-2">
-          <div className="flex items-center gap-2 overflow-hidden">
-            <span className="text-[12px] text-muted-app truncate">{item.source}</span>
+          <div className="flex items-center gap-2">
+            <span className="flex items-center gap-1 text-[12px] leading-[18px] text-muted-app">
+              <KindIcon className="w-3 h-3" />
+              {getKindLabel(item.kind)}
+            </span>
             <span className="text-[12px] text-muted-app">·</span>
-            <span className="text-[12px] text-muted-app truncate">{item.author}</span>
+            <span className="text-[12px] leading-[18px] text-muted-app">{item.minutesMock}분</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="hidden md:flex flex-wrap gap-1">
-              {item.chipIds.slice(0, 2).map(chipId => {
+              {item.chipIds.slice(0, 3).map(chipId => {
                 const chip = getChipById(chipId);
                 return chip ? (
                   <span key={chipId} className="px-2 py-0.5 bg-surface rounded-full text-[12px] text-muted-app border border-app">
