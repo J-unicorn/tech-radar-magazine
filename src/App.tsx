@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import ContentDetail from "./pages/ContentDetail";
 import CollectionDetail from "./pages/CollectionDetail";
 import CreatorDetail from "./pages/CreatorDetail";
+import TagPage from "./pages/TagPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/content/:id" element={<ContentDetail />} />
           <Route path="/collections/:id" element={<CollectionDetail />} />
           <Route path="/creators/:id" element={<CreatorDetail />} />
+          <Route path="/tag/:chipId" element={<TagPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

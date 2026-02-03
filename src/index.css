@@ -4,122 +4,113 @@
 
 @layer base {
   :root {
-    /* Core brand colors */
-    --background: 0 0% 100%;
-    --foreground: 240 10% 10%;
+    /* NEW THEME SYSTEM - Light Mode */
+    --bg: 210 40% 98%; /* #F8FAFC */
+    --surface: 0 0% 100%; /* #FFFFFF */
+    --text: 222 47% 11%; /* #0F172A */
+    --muted: 215 16% 47%; /* #64748B */
+    --accent: 217 91% 60%; /* #3B82F6 */
+    --primary: 224 76% 40%; /* #1E40AF */
+    --border: 214 32% 91%; /* #E2E8F0 */
 
-    /* Lavender surface */
-    --surface: 280 100% 98%;
-    --surface-foreground: 240 10% 10%;
-
-    /* Primary purple */
-    --primary: 266 89% 50%;
+    /* Shadcn compatibility mappings */
+    --background: var(--bg);
+    --foreground: var(--text);
+    --card: var(--surface);
+    --card-foreground: var(--text);
+    --popover: var(--surface);
+    --popover-foreground: var(--text);
     --primary-foreground: 0 0% 100%;
-
-    /* Secondary */
-    --secondary: 280 20% 96%;
-    --secondary-foreground: 240 10% 20%;
-
-    /* Muted */
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 5% 46%;
-
-    /* Accent */
-    --accent: 266 89% 95%;
-    --accent-foreground: 266 89% 40%;
-
-    /* Destructive */
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted-foreground: var(--muted);
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-
-    /* Card */
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 10%;
-
-    /* Popover */
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 10%;
-
-    /* Border & Input */
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
-    --ring: 266 89% 50%;
+    --input: var(--border);
+    --ring: var(--accent);
 
     /* Radius */
     --radius: 1rem;
     --radius-hero: 1.5rem;
     --radius-sm: 0.5rem;
 
-    /* Sidebar */
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5% 26%;
-    --sidebar-primary: 266 89% 50%;
+    /* Sidebar (if needed) */
+    --sidebar-background: var(--surface);
+    --sidebar-foreground: var(--text);
+    --sidebar-primary: var(--primary);
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 280 100% 98%;
-    --sidebar-accent-foreground: 266 89% 40%;
-    --sidebar-border: 240 6% 90%;
-    --sidebar-ring: 266 89% 50%;
+    --sidebar-accent: var(--accent);
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: var(--border);
+    --sidebar-ring: var(--accent);
 
     /* Badge variants */
     --badge-hot: 0 84% 60%;
     --badge-new: 199 89% 48%;
-    --badge-recommend: 266 89% 50%;
+    --badge-recommend: var(--accent);
     --badge-popular: 45 93% 47%;
     --badge-core: 142 71% 45%;
-    --badge-intro: 280 60% 65%;
-    --badge-kor: 240 5% 35%;
+    --badge-intro: 217 91% 60%;
+    --badge-kor: 215 16% 47%;
+
+    /* Shadows - subtle */
+    --shadow-sm: 0 1px 2px hsla(222, 47%, 11%, 0.05);
+    --shadow-md: 0 4px 6px -1px hsla(222, 47%, 11%, 0.1), 0 2px 4px -2px hsla(222, 47%, 11%, 0.1);
+    --shadow-card: var(--shadow-sm);
+    --shadow-card-hover: var(--shadow-md);
+    --shadow-hero: var(--shadow-md);
 
     /* Gradients */
-    --gradient-hero: linear-gradient(180deg, hsla(0, 0%, 0%, 0) 0%, hsla(0, 0%, 0%, 0.7) 100%);
-    --gradient-newsletter: linear-gradient(135deg, hsl(266 89% 50%) 0%, hsl(280 70% 60%) 100%);
-    --gradient-card-hover: linear-gradient(180deg, hsla(266, 89%, 50%, 0.05) 0%, hsla(266, 89%, 50%, 0) 100%);
-
-    /* Shadows */
-    --shadow-card: 0 1px 3px hsla(240, 10%, 10%, 0.08), 0 4px 12px hsla(240, 10%, 10%, 0.04);
-    --shadow-card-hover: 0 4px 12px hsla(240, 10%, 10%, 0.12), 0 8px 24px hsla(240, 10%, 10%, 0.08);
-    --shadow-hero: 0 8px 32px hsla(240, 10%, 10%, 0.16);
+    --gradient-hero: linear-gradient(180deg, hsla(0, 0%, 0%, 0) 35%, hsla(0, 0%, 0%, 0.7) 100%);
+    --gradient-newsletter: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(224 76% 48%) 100%);
   }
 
   .dark {
-    --background: 240 10% 6%;
-    --foreground: 0 0% 98%;
+    /* NEW THEME SYSTEM - Dark Mode */
+    --bg: 220 20% 6%; /* #0B0E14 */
+    --surface: 220 16% 11%; /* #151921 */
+    --text: 0 0% 100%; /* #FFFFFF */
+    --muted: 215 14% 58%; /* #8B949E */
+    --accent: 187 100% 50%; /* #00D4FF */
+    --primary: 210 100% 50%; /* #007BFF */
+    --border: 215 14% 21%; /* #30363D */
 
-    --surface: 260 20% 12%;
-    --surface-foreground: 0 0% 98%;
-
-    --primary: 266 89% 60%;
+    /* Shadcn compatibility mappings */
+    --background: var(--bg);
+    --foreground: var(--text);
+    --card: var(--surface);
+    --card-foreground: var(--text);
+    --popover: var(--surface);
+    --popover-foreground: var(--text);
     --primary-foreground: 0 0% 100%;
+    --secondary: 220 16% 16%;
+    --secondary-foreground: 0 0% 100%;
+    --muted-foreground: var(--muted);
+    --accent-foreground: 220 20% 6%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
+    --input: var(--border);
+    --ring: var(--accent);
 
-    --secondary: 240 10% 15%;
-    --secondary-foreground: 0 0% 90%;
-
-    --muted: 240 10% 15%;
-    --muted-foreground: 240 5% 55%;
-
-    --accent: 266 50% 20%;
-    --accent-foreground: 266 89% 80%;
-
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 0 0% 98%;
-
-    --card: 240 10% 8%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 240 10% 8%;
-    --popover-foreground: 0 0% 98%;
-
-    --border: 240 10% 18%;
-    --input: 240 10% 18%;
-    --ring: 266 89% 60%;
-
-    --sidebar-background: 240 10% 8%;
-    --sidebar-foreground: 240 5% 80%;
-    --sidebar-primary: 266 89% 60%;
+    /* Sidebar */
+    --sidebar-background: var(--surface);
+    --sidebar-foreground: var(--text);
+    --sidebar-primary: var(--primary);
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 260 20% 15%;
-    --sidebar-accent-foreground: 266 89% 80%;
-    --sidebar-border: 240 10% 18%;
-    --sidebar-ring: 266 89% 60%;
+    --sidebar-accent: var(--accent);
+    --sidebar-accent-foreground: 220 20% 6%;
+    --sidebar-border: var(--border);
+    --sidebar-ring: var(--accent);
+
+    /* Badge variants - adjusted for dark */
+    --badge-hot: 0 72% 51%;
+    --badge-new: 199 89% 48%;
+    --badge-recommend: var(--accent);
+    --badge-popular: 45 93% 47%;
+    --badge-core: 142 71% 45%;
+    --badge-intro: 210 100% 50%;
+    --badge-kor: 215 14% 58%;
   }
 }
 
@@ -133,71 +124,131 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply antialiased;
+    background-color: hsl(var(--bg));
+    color: hsl(var(--text));
     font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     letter-spacing: -0.01em;
   }
 }
 
 @layer components {
+  /* Theme utility classes */
+  .bg-app {
+    background-color: hsl(var(--bg));
+  }
+
+  .bg-surface {
+    background-color: hsl(var(--surface));
+  }
+
+  .text-app {
+    color: hsl(var(--text));
+  }
+
+  .text-muted-app {
+    color: hsl(var(--muted));
+  }
+
+  .border-app {
+    border-color: hsl(var(--border));
+  }
+
+  .text-accent {
+    color: hsl(var(--accent));
+  }
+
+  .bg-accent {
+    background-color: hsl(var(--accent));
+  }
+
+  .btn-primary {
+    background-color: hsl(var(--primary));
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background-color: hsl(var(--primary) / 0.9);
+  }
+
   /* Card variants */
   .card-base {
-    @apply bg-card rounded-2xl border border-border overflow-hidden transition-all duration-200;
-    box-shadow: var(--shadow-card);
+    background-color: hsl(var(--surface));
+    border-radius: 1rem;
+    border: 1px solid hsl(var(--border));
+    overflow: hidden;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
   }
 
   .card-base:hover {
-    box-shadow: var(--shadow-card-hover);
+    box-shadow: var(--shadow-md);
   }
 
   .card-hero {
-    @apply bg-card overflow-hidden transition-all duration-300;
-    border-radius: var(--radius-hero);
-    box-shadow: var(--shadow-hero);
+    background-color: hsl(var(--surface));
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-md);
   }
 
   /* Badge variants */
   .badge-hot {
-    @apply bg-red-500 text-white;
+    background-color: hsl(0 84% 60%);
+    color: white;
   }
 
   .badge-new {
-    @apply bg-sky-500 text-white;
+    background-color: hsl(199 89% 48%);
+    color: white;
   }
 
   .badge-recommend {
-    @apply bg-primary text-primary-foreground;
+    background-color: hsl(var(--accent));
+    color: white;
   }
 
   .badge-popular {
-    @apply bg-amber-500 text-white;
+    background-color: hsl(45 93% 47%);
+    color: white;
   }
 
   .badge-core {
-    @apply bg-emerald-500 text-white;
+    background-color: hsl(142 71% 45%);
+    color: white;
   }
 
   .badge-intro {
-    @apply bg-purple-400 text-white;
+    background-color: hsl(var(--accent));
+    color: white;
   }
 
   .badge-kor {
-    @apply bg-muted text-muted-foreground;
+    background-color: hsl(var(--muted) / 0.2);
+    color: hsl(var(--muted));
   }
 
   /* Chip styles */
   .chip {
     @apply inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer select-none;
-    @apply bg-muted text-muted-foreground hover:bg-accent hover:text-accent-foreground;
+    background-color: hsl(var(--muted) / 0.1);
+    color: hsl(var(--muted));
+  }
+
+  .chip:hover {
+    background-color: hsl(var(--accent) / 0.1);
+    color: hsl(var(--accent));
   }
 
   .chip-active {
-    @apply bg-primary text-primary-foreground;
+    background-color: hsl(var(--accent));
+    color: white;
   }
 
   /* Section container */
   .section-container {
-    @apply px-4 md:px-6 lg:px-8 py-12 md:py-16;
+    @apply px-6 py-14;
   }
 
   /* Gradient overlays */
@@ -217,11 +268,6 @@
   .scroll-hide-mobile {
     -ms-overflow-style: none;
     scrollbar-width: none;
-  }
-
-  /* Lavender surface background */
-  .bg-surface {
-    @apply bg-purple-50/50;
   }
 
   /* Text clamp utilities */
@@ -248,21 +294,23 @@
 }
 
 @layer utilities {
-  /* Spacing utilities for airy layouts */
+  /* Fixed spacing utilities per spec */
   .section-padding {
-    @apply py-12 md:py-16 lg:py-20;
+    padding-top: 56px;
+    padding-bottom: 56px;
   }
 
   .container-padding {
-    @apply px-4 md:px-6 lg:px-8;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
   /* Gap utilities */
   .gap-section {
-    @apply gap-6 md:gap-8;
+    gap: 24px;
   }
 
   .gap-cards {
-    @apply gap-4 md:gap-6;
+    gap: 24px;
   }
 }

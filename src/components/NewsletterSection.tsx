@@ -48,32 +48,32 @@ export function NewsletterSection() {
 
   return (
     <section className="section-padding">
-      <div className="container-padding max-w-7xl mx-auto">
-        <div className="gradient-newsletter rounded-3xl p-8 md:p-12 lg:p-16">
+      <div className="container-padding max-w-[1200px] mx-auto">
+        <div className="bg-surface rounded-3xl p-8 md:p-12 lg:p-16 border border-app">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left: Text */}
-            <div className="text-white">
+            <div>
               <div className="flex items-center gap-2 mb-4">
-                <Mail className="w-6 h-6" />
-                <span className="text-sm font-medium opacity-80">Tech Radar 뉴스레터</span>
+                <Mail className="w-6 h-6 text-accent" />
+                <span className="text-[12px] font-medium text-muted-app">Tech Radar 뉴스레터</span>
               </div>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold whitespace-pre-line leading-tight">
-                {newsletter.headline}
+              <h2 className="text-[20px] md:text-[24px] leading-[28px] md:leading-[32px] font-semibold text-app whitespace-pre-line">
+                Tech Radar가 고른 실무 인사이트를 매주 목요일에
               </h2>
-              <p className="mt-4 text-white/80">{newsletter.subscriberCountLabel}</p>
+              <p className="mt-4 text-[14px] text-muted-app">{newsletter.subscriberCountLabel}</p>
             </div>
 
             {/* Right: Form */}
-            <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-6 md:p-8">
+            <form onSubmit={handleSubmit} className="bg-app rounded-2xl p-6 md:p-8 border border-app">
               <div className="flex gap-2 mb-6">
                 <Input
                   type="email"
                   placeholder="이메일을 입력해주세요"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1"
+                  className="flex-1 h-10 bg-surface border-app"
                 />
-                <Button type="submit" disabled={!isValid}>
+                <Button type="submit" disabled={!isValid} className="h-10 btn-primary">
                   무료로 구독하기
                 </Button>
               </div>
@@ -94,8 +94,8 @@ export function NewsletterSection() {
                     />
                     <label
                       htmlFor={consent.id}
-                      className={`text-sm cursor-pointer ${
-                        consent.id === "c_all" ? "font-medium text-foreground" : "text-muted-foreground"
+                      className={`text-[14px] cursor-pointer ${
+                        consent.id === "c_all" ? "font-medium text-app" : "text-muted-app"
                       }`}
                     >
                       {consent.label}
