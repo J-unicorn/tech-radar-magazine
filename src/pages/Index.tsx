@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Header } from "@/components/Header";
 import { HeroCarousel } from "@/components/HeroCarousel";
-import { MiniCard } from "@/components/MiniCard";
+import { MiniInsightCard } from "@/components/MiniInsightCard";
 import { RankingCard } from "@/components/RankingCard";
-import { CollectionCard } from "@/components/CollectionCard";
+import { TechInsightBannerCard } from "@/components/TechInsightBannerCard";
+import { BigTechUpdateCarousel } from "@/components/BigTechUpdateCarousel";
+import { CollectionCarousel } from "@/components/CollectionCarousel";
 import { CreatorCard } from "@/components/CreatorCard";
 import { NewsletterSection } from "@/components/NewsletterSection";
 import { SectionHeader } from "@/components/SectionHeader";
@@ -11,8 +13,7 @@ import { mockData, getItemById, Item } from "@/data/mockData";
 
 const Index = () => {
   // State management
-  const [activeTab, setActiveTab] = useState<"new" | "popular">("new");
-  const [activeChipId, setActiveChipId] = useState<string | null>(null);
+  const [heroIndex, setHeroIndex] = useState(0);
   const [bookmarkedIds, setBookmarkedIds] = useState<Set<string>>(new Set());
   const [subscribedCreatorIds, setSubscribedCreatorIds] = useState<Set<string>>(new Set());
 
@@ -42,44 +43,64 @@ const Index = () => {
     });
   };
 
-  // Get mini card items
-  const miniItems = mockData.layout.miniIds
+  // Get current hero item for mini insight cards
+  const heroItems = mockData.layout.heroIds
     .map((id) => getItemById(id))
     .filter((item): item is Item => item !== undefined);
+  
+  const currentHeroItem = heroItems[heroIndex] || heroItems[0];
+
+  // Derive AI summary and pick reason
+  const aiSummary3 = currentHeroItem?.aiSummary3 || [
+    currentHeroItem?.summary?.slice(0, 40) + "...",
+    "핵심 개념과 실전 적용 방법 제시",
+    "초보자도 따라할 수 있는 단계별 가이드"
+  ];
+
+  const radarPickReason = currentHeroItem?.radarPickReason || 
+    `${currentHeroItem?.statsMock?.views?.toLocaleString() || "0"} 조회와 ${currentHeroItem?.badges?.[0] || "추천"} 태그로 주목받는 콘텐츠`;
 
   return (
     <div className="min-h-screen bg-app">
-      <Header
-        activeTab={activeTab}
-        onTabChange={setActiveTab}
-        activeChipId={activeChipId}
-        onChipChange={setActiveChipId}
-      />
+      <Header />
 
       <main className="max-w-[1200px] mx-auto container-padding">
         {/* Main Grid Section */}
         <section className="py-6 md:py-8">
           <div className="grid lg:grid-cols-12 gap-6">
-            {/* Left Column - Hero + Mini Cards (8 cols) */}
+            {/* Left Column - Hero + Mini Insight Cards (8 cols) */}
             <div className="lg:col-span-8 space-y-6">
-              <HeroCarousel />
+              <HeroCarousel 
+                heroIndex={heroIndex} 
+                onIndexChange={setHeroIndex} 
+              />
               <div className="grid md:grid-cols-2 gap-6">
-                {miniItems.map((item) => (
-                  <MiniCard
-                    key={item.id}
-                    item={item}
-                    isBookmarked={bookmarkedIds.has(item.id)}
-                    onToggleBookmark={toggleBookmark}
-                  />
-                ))}
+                <MiniInsightCard 
+                  title="AI 세줄요약" 
+                  lines={aiSummary3 as string[]} 
+                />
+                <MiniInsightCard 
+                  title="Tech Radar Pick" 
+                  text={radarPickReason} 
+                />
               </div>
             </div>
 
-            {/* Right Column - Ranking (4 cols) */}
-            <div className="lg:col-span-4">
+            {/* Right Column - Ranking + Banner (4 cols) */}
+            <div className="lg:col-span-4 space-y-6">
               <RankingCard />
+              <TechInsightBannerCard />
             </div>
           </div>
+        </section>
+
+        {/* Big Tech Updates Section */}
+        <section className="section-padding">
+          <SectionHeader
+            title="Big Tech 업데이트 소식"
+            subtitle="Google · OpenAI · Meta · Anthropic 최신 동향"
+          />
+          <BigTechUpdateCarousel />
         </section>
 
         {/* Collections Section - 추천 로드맵 */}
@@ -88,16 +109,11 @@ const Index = () => {
             title="Tech Radar 추천 로드맵"
             subtitle="AI Agent · Vibe Coding을 빠르게 익히는 큐레이션"
           />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {mockData.layout.collections.map((collection) => (
-              <CollectionCard
-                key={collection.id}
-                collection={collection}
-                isBookmarked={bookmarkedIds.has(collection.id)}
-                onToggleBookmark={toggleBookmark}
-              />
-            ))}
-          </div>
+          <CollectionCarousel
+            collections={mockData.layout.collections}
+            bookmarkedIds={bookmarkedIds}
+            onToggleBookmark={toggleBookmark}
+          />
         </section>
 
         {/* Trending Tools Section */}
@@ -107,17 +123,13 @@ const Index = () => {
             subtitle="Cursor · LangGraph · MCP · n8n 중심"
             href="/"
           />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {mockData.layout.collections.map((collection, index) => (
-              <CollectionCard
-                key={`trending-${collection.id}`}
-                collection={collection}
-                isBookmarked={bookmarkedIds.has(collection.id)}
-                onToggleBookmark={toggleBookmark}
-                showAd={index === 1}
-              />
-            ))}
-          </div>
+          <CollectionCarousel
+            collections={mockData.layout.collections}
+            bookmarkedIds={bookmarkedIds}
+            onToggleBookmark={toggleBookmark}
+            showAd={true}
+            adIndex={1}
+          />
         </section>
 
         {/* Creators Section */}

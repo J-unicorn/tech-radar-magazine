@@ -1,27 +1,22 @@
 import { Search, Menu, X, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { mockData } from "@/data/mockData";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "@/hooks/useTheme";
 
-interface HeaderProps {
-  activeTab: "new" | "popular";
-  onTabChange: (tab: "new" | "popular") => void;
-  activeChipId: string | null;
-  onChipChange: (chipId: string | null) => void;
-}
-
-export function Header({ activeTab, onTabChange, activeChipId, onChipChange }: HeaderProps) {
+export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
 
   const handleChipClick = (chipId: string) => {
-    // Navigate to tag page instead of filtering in place
     navigate(`/tag/${chipId}`);
+  };
+
+  const handleInsightClick = () => {
+    navigate("/insight");
   };
 
   return (
@@ -82,25 +77,17 @@ export function Header({ activeTab, onTabChange, activeChipId, onChipChange }: H
       <div className="border-t border-app bg-surface">
         <div className="container-padding">
           <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-4 h-auto md:h-[56px] py-3 md:py-0 max-w-[1200px] mx-auto">
-            {/* Tabs - Left */}
-            <Tabs value={activeTab} onValueChange={(v) => onTabChange(v as "new" | "popular")} className="flex-shrink-0">
-              <TabsList className="bg-transparent h-auto p-0 gap-1">
-                <TabsTrigger
-                  value="new"
-                  className="px-4 py-2 text-[14px] font-medium rounded-full transition-all data-[state=active]:bg-accent data-[state=active]:text-white data-[state=inactive]:text-muted-app"
-                >
-                  새로 나온
-                </TabsTrigger>
-                <TabsTrigger
-                  value="popular"
-                  className="px-4 py-2 text-[14px] font-medium rounded-full transition-all data-[state=active]:bg-accent data-[state=active]:text-white data-[state=inactive]:text-muted-app"
-                >
-                  인기
-                </TabsTrigger>
-              </TabsList>
-            </Tabs>
+            {/* Left: Tech Insight CTA */}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleInsightClick}
+              className="flex-shrink-0 h-9 px-4 border-accent text-accent hover:bg-accent/10 font-medium"
+            >
+              Tech Insight 클릭
+            </Button>
 
-            {/* Chips - Right */}
+            {/* Right: Chips */}
             <div className="flex-1 overflow-hidden">
               <ScrollArea className="w-full">
                 <div className="flex items-center gap-2 pb-2 md:pb-0">
@@ -108,7 +95,7 @@ export function Header({ activeTab, onTabChange, activeChipId, onChipChange }: H
                     <button
                       key={chip.id}
                       onClick={() => handleChipClick(chip.id)}
-                      className={`chip whitespace-nowrap ${activeChipId === chip.id ? "chip-active" : ""}`}
+                      className="chip whitespace-nowrap"
                     >
                       {chip.label}
                     </button>
