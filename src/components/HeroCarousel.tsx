@@ -1,11 +1,15 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { mockData, getItemById, getChipById } from "@/data/mockData";
 import { Link } from "react-router-dom";
 
-export function HeroCarousel() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+interface HeroCarouselProps {
+  heroIndex: number;
+  onIndexChange: (index: number) => void;
+}
+
+export function HeroCarousel({ heroIndex, onIndexChange }: HeroCarouselProps) {
   const heroItems = mockData.layout.heroIds
     .map(id => getItemById(id))
     .filter(Boolean);
@@ -13,20 +17,20 @@ export function HeroCarousel() {
   const totalSlides = heroItems.length;
 
   const goToPrevious = () => {
-    setCurrentIndex((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
+    onIndexChange(heroIndex === 0 ? totalSlides - 1 : heroIndex - 1);
   };
 
   const goToNext = () => {
-    setCurrentIndex((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
+    onIndexChange(heroIndex === totalSlides - 1 ? 0 : heroIndex + 1);
   };
 
   // Auto-advance every 5 seconds
   useEffect(() => {
     const timer = setInterval(goToNext, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [heroIndex]);
 
-  const currentItem = heroItems[currentIndex];
+  const currentItem = heroItems[heroIndex];
   if (!currentItem) return null;
 
   return (
@@ -91,7 +95,7 @@ export function HeroCarousel() {
 
       {/* Pagination pill - bottom right */}
       <div className="absolute bottom-4 right-4 z-10 px-3 py-1 rounded-full bg-black/50 text-white text-[12px]">
-        {currentIndex + 1}/{totalSlides}
+        {heroIndex + 1}/{totalSlides}
       </div>
     </div>
   );

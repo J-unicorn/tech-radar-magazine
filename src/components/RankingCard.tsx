@@ -21,14 +21,14 @@ export function RankingCard() {
   };
 
   return (
-    <div className="card-base p-4 min-h-[576px]">
+    <div className="card-base p-4 min-h-[360px]">
       <h3 className="text-[20px] leading-[28px] font-semibold text-app mb-4">
         이번 주 Tech Radar 인기
       </h3>
       <div className="space-y-0">
         {rankingItems.map((item, index) => (
           <div key={item!.id}>
-            <div className="flex items-center gap-3 h-[72px]">
+            <div className="flex items-center gap-3 h-[60px]">
               {/* Rank Number - accent color */}
               <span className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-[14px] font-bold text-accent">
                 {index + 1}
@@ -41,7 +41,7 @@ export function RankingCard() {
                     {item!.title}
                   </h4>
                 </Link>
-                <div className="flex items-center gap-2 mt-1">
+                <div className="flex items-center gap-2 mt-0.5">
                   {item!.badges.slice(0, 1).map(badge => (
                     <Badge key={badge} variant="secondary" className={`text-[10px] px-1.5 py-0 ${getBadgeClass(badge)}`}>
                       {badge}
@@ -53,9 +53,9 @@ export function RankingCard() {
                 </div>
               </div>
 
-              {/* Thumbnail - 56px square */}
+              {/* Thumbnail - 48px square */}
               <Link to={`/content/${item!.id}`} className="flex-shrink-0">
-                <div className="w-14 h-14 rounded-lg overflow-hidden bg-surface">
+                <div className="w-12 h-12 rounded-lg overflow-hidden bg-surface">
                   <img
                     src={item!.thumb}
                     alt={item!.title}

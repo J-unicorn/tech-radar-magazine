@@ -89,6 +89,18 @@ export default function ContentDetail() {
     return "bg-muted text-muted-foreground";
   };
 
+  // Derive AI summary
+  const aiSummary3 = item.aiSummary3 || [
+    item.summary.slice(0, 50) + "...",
+    "핵심 개념과 실전 적용 방법 제시",
+    "초보자도 따라할 수 있는 단계별 가이드"
+  ];
+
+  // Derive radar pick reason
+  const topChip = item.chipIds[0] ? getChipById(item.chipIds[0])?.label : "AI Agent";
+  const radarPickReason = item.radarPickReason || 
+    `${formatViews(item.statsMock.views)} 조회와 ${item.badges[0] || topChip} 태그로 주목받는 콘텐츠. Tech Radar가 엄선한 ${getKindLabel(item.kind)} 자료입니다.`;
+
   const ContentSection = () => (
     <>
       {/* Thumbnail */}
@@ -152,10 +164,23 @@ export default function ContentDetail() {
         </span>
       </div>
 
-      {/* Summary */}
+      {/* AI Summary Card */}
+      <div className="p-6 bg-surface rounded-2xl mb-4 border border-app">
+        <h3 className="text-[16px] font-semibold text-app mb-3">AI 세줄요약</h3>
+        <ul className="space-y-2">
+          {aiSummary3.map((line, idx) => (
+            <li key={idx} className="flex items-start gap-2 text-[14px] leading-[22px] text-muted-app">
+              <span className="text-accent font-bold shrink-0">•</span>
+              {line}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Tech Radar Pick Card */}
       <div className="p-6 bg-surface rounded-2xl mb-8 border border-app">
-        <h3 className="text-[16px] font-semibold text-app mb-2">요약</h3>
-        <p className="text-[14px] leading-[22px] text-muted-app">{item.summary}</p>
+        <h3 className="text-[16px] font-semibold text-app mb-2">Tech Radar Pick</h3>
+        <p className="text-[14px] leading-[22px] text-muted-app">{radarPickReason}</p>
       </div>
 
       {/* Chips */}

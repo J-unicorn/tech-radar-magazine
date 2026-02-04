@@ -23,7 +23,31 @@ export interface Item {
   statsMock: ItemStats;
   summary: string;
   lang: string;
+  aiSummary3?: [string, string, string];
+  radarPickReason?: string;
 }
+
+export interface TechInsightBanner {
+  tagLeft: string;
+  tagRight: string;
+  headline: string;
+  bars: { h: number; accent: boolean }[];
+  barCaption: string;
+  cta: string;
+}
+
+export const techInsightBannerMock: TechInsightBanner = {
+  tagLeft: "INSIGHT #02",
+  tagRight: "HOT TOPIC",
+  headline: "\"도입 후 성능 30% 개선\"\nNext.js 15의 핵심 변경점",
+  bars: [
+    { h: 0.4, accent: false },
+    { h: 0.6, accent: false },
+    { h: 1.0, accent: true }
+  ],
+  barCaption: "Performance Up",
+  cta: "인사이트 리포트 확인하기"
+};
 
 export interface Collection {
   id: string;
@@ -168,7 +192,9 @@ export const mockData: MockData = {
       "minutesMock": 47,
       "statsMock": { "views": 12800, "likes": 410, "comments": 52 },
       "summary": "LangGraph로 에이전트 시스템을 '그래프'로 설계하는 큰 그림(요약은 목업).",
-      "lang": "en"
+      "lang": "en",
+      "aiSummary3": ["그래프 구조로 복잡한 Agent 흐름을 시각화", "상태 관리와 조건부 분기를 체계적으로 구현", "실무 적용을 위한 디버깅·모니터링 패턴 제시"],
+      "radarPickReason": "Agent 시스템의 복잡성을 해결하는 구조적 접근법을 명확히 제시. 12.8K 조회와 410 좋아요가 증명하는 퀄리티."
     },
     {
       "id": "itm_y_langgraph_course",
@@ -183,7 +209,9 @@ export const mockData: MockData = {
       "minutesMock": 120,
       "statsMock": { "views": 67000, "likes": 2300, "comments": 190 },
       "summary": "초보자용 LangGraph 코스. 노드/엣지/상태 개념을 실습으로(요약은 목업).",
-      "lang": "en"
+      "lang": "en",
+      "aiSummary3": ["노드와 엣지 개념으로 Agent 흐름 이해하기", "상태 관리로 복잡한 대화 컨텍스트 유지", "Python 기반 실습으로 바로 적용 가능"],
+      "radarPickReason": "freeCodeCamp의 67K 조회 대작. 입문자도 120분 투자로 LangGraph 핵심을 마스터할 수 있음."
     },
     {
       "id": "itm_y_mcp_20",
@@ -198,7 +226,9 @@ export const mockData: MockData = {
       "minutesMock": 20,
       "statsMock": { "views": 56300, "likes": 2100, "comments": 180 },
       "summary": "MCP의 구성(호스트/클라이언트/서버)과 연결 방식 개요(요약은 목업).",
-      "lang": "en"
+      "lang": "en",
+      "aiSummary3": ["MCP의 호스트/클라이언트/서버 3계층 구조 이해", "표준 프로토콜로 AI와 외부 도구 연결 방식 학습", "20분 만에 핵심 개념 정리 완료"],
+      "radarPickReason": "56K 조회로 검증된 MCP 필수 입문서. 툴 연결의 표준을 20분에 이해할 수 있음."
     },
     {
       "id": "itm_y_mcp_2min",
@@ -243,7 +273,9 @@ export const mockData: MockData = {
       "minutesMock": 10,
       "statsMock": { "views": 184000, "likes": 5400, "comments": 420 },
       "summary": "Vibe 코딩의 '루프'를 처음부터 잡아주는 입문(요약은 목업).",
-      "lang": "en"
+      "lang": "en",
+      "aiSummary3": ["Vibe Coding의 핵심 루프: 프롬프트→생성→검증→수정", "10분 만에 첫 MVP를 완성하는 실전 워크플로우", "AI와 협업하는 개발 패러다임 입문"],
+      "radarPickReason": "184K 조회와 5.4K 좋아요의 입문 최강자. 10분 투자로 Vibe Coding 시작 가능."
     },
     {
       "id": "itm_y_cursor_vibe",
@@ -303,7 +335,9 @@ export const mockData: MockData = {
       "minutesMock": 8,
       "statsMock": { "views": 42000, "likes": 1200, "comments": 160 },
       "summary": "Vibe coding 개념 정의 + 실전 진행 팁(요약은 목업).",
-      "lang": "en"
+      "lang": "en",
+      "aiSummary3": ["Vibe Coding 개념을 Replit 관점에서 정의", "앱 개발 과정에서 AI와 협업하는 실전 팁 제공", "초보자도 바로 시작할 수 있는 워크플로우 안내"],
+      "radarPickReason": "Replit 공식 블로그가 정의하는 Vibe Coding. 42K 조회로 개념 정리의 정석."
     },
     {
       "id": "itm_w_stackoverflow_vibe",
@@ -333,7 +367,9 @@ export const mockData: MockData = {
       "minutesMock": 6,
       "statsMock": { "views": 98000, "likes": 6400, "comments": 520 },
       "summary": "로컬 데모 vs 배포 앱의 난이도 차이를 솔직히 회고(요약은 목업).",
-      "lang": "en"
+      "lang": "en",
+      "aiSummary3": ["로컬 데모와 실제 배포의 간극을 솔직하게 분석", "Vibe Coding으로 MVP 빠르게 만들되 함정 주의", "실무 적용 시 고려해야 할 현실적 이슈 정리"],
+      "radarPickReason": "Karpathy의 98K 조회 회고록. Vibe Coding의 현실과 함정을 가장 솔직하게 다룸."
     },
     {
       "id": "itm_w_vibe_hell",
