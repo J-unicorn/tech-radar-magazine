@@ -25,13 +25,16 @@ export interface Item {
   lang: string;
   aiSummary3?: [string, string, string];
   radarPickReason?: string;
+   youtubeId?: string;
+   keyTakeaways?: string[];
 }
 
 export interface TechInsightBanner {
   tagLeft: string;
   tagRight: string;
   headline: string;
-  bars: { h: number; accent: boolean }[];
+   leftBars: { h: number; accent: boolean }[];
+   rightBars: { h: number; accent: boolean }[];
   barCaption: string;
   cta: string;
 }
@@ -40,11 +43,16 @@ export const techInsightBannerMock: TechInsightBanner = {
   tagLeft: "INSIGHT #02",
   tagRight: "HOT TOPIC",
   headline: "\"도입 후 성능 30% 개선\"\nNext.js 15의 핵심 변경점",
-  bars: [
+   leftBars: [
     { h: 0.4, accent: false },
     { h: 0.6, accent: false },
     { h: 1.0, accent: true }
   ],
+   rightBars: [
+     { h: 0.8, accent: false },
+     { h: 0.5, accent: true },
+     { h: 0.9, accent: false }
+   ],
   barCaption: "Performance Up",
   cta: "인사이트 리포트 확인하기"
 };
@@ -159,7 +167,43 @@ export const mockData: MockData = {
         "name": "MCP / Tool Integration",
         "tagline": "툴·데이터 연결을 표준화하는 방법",
         "topItemIds": ["itm_y_mcp_20", "itm_w_itpro_mcp"]
-      }
+       },
+       {
+         "id": "crt_n8n_automation",
+         "name": "n8n / Automation",
+         "tagline": "노코드로 AI 워크플로우 자동화",
+         "topItemIds": ["itm_d_n8n_tutorial", "itm_y_n8n_agents"]
+       },
+       {
+         "id": "crt_ai_trends",
+         "name": "AI Trends & Analysis",
+         "tagline": "최신 AI 트렌드와 기술 분석",
+         "topItemIds": ["itm_y_mcp_2min", "itm_w_stackoverflow_vibe"]
+       },
+       {
+         "id": "crt_dev_practice",
+         "name": "Dev Practice",
+         "tagline": "개발 실무 팁과 베스트 프랙티스",
+         "topItemIds": ["itm_w_replit_vibe", "itm_w_vibe_hell"]
+       },
+       {
+         "id": "crt_korean_guides",
+         "name": "Korean Guides",
+         "tagline": "한국어 가이드와 튜토리얼",
+         "topItemIds": ["itm_k_wikidocs_langgraph", "itm_w_mimul_mcp"]
+       },
+       {
+         "id": "crt_beginner_friendly",
+         "name": "Beginner Friendly",
+         "tagline": "입문자를 위한 친절한 콘텐츠",
+         "topItemIds": ["itm_y_cursor_vibe", "itm_y_n8n_beginner_2026"]
+       },
+       {
+         "id": "crt_deep_dive",
+         "name": "Deep Dive",
+         "tagline": "심화 학습과 고급 주제",
+         "topItemIds": ["itm_y_langgraph_adv", "itm_d_n8n_advanced_ai"]
+       }
     ],
     "handbookCards": [
       { "id": "hb_save", "label": "레시피 저장", "title": "따라하기 링크를 한 번에", "desc": "워크플로우·프롬프트를 저장하고 재사용", "icon": "Bookmark" },

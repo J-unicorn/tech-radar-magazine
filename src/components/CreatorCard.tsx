@@ -13,22 +13,22 @@ export function CreatorCard({ creator, isSubscribed, onToggleSubscribe }: Creato
   const topItems = creator.topItemIds.map(id => getItemById(id)).filter(Boolean);
 
   return (
-    <div className="card-base p-4 hover:shadow-md">
+     <div className="card-base p-3 hover:shadow-md h-full flex flex-col">
       {/* Header */}
-      <div className="flex items-start gap-3 mb-4">
-        {/* Avatar - 40px */}
-        <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
+       <div className="flex items-start gap-3 mb-3">
+         {/* Avatar - 36px */}
+         <div className="w-9 h-9 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
           <User className="w-5 h-5 text-accent" />
         </div>
         
         {/* Info */}
         <div className="flex-1 min-w-0">
           <Link to={`/creators/${creator.id}`}>
-            <h3 className="text-[16px] leading-[24px] font-semibold text-app hover:text-accent transition-colors">
+             <h3 className="text-[14px] leading-[20px] font-semibold text-app hover:text-accent transition-colors line-clamp-1">
               {creator.name}
             </h3>
           </Link>
-          <p className="text-[12px] leading-[18px] text-muted-app line-clamp-1">{creator.tagline}</p>
+           <p className="text-[11px] leading-[16px] text-muted-app line-clamp-1">{creator.tagline}</p>
         </div>
 
         {/* Subscribe button */}
@@ -36,7 +36,7 @@ export function CreatorCard({ creator, isSubscribed, onToggleSubscribe }: Creato
           variant={isSubscribed ? "secondary" : "outline"}
           size="sm"
           onClick={() => onToggleSubscribe(creator.id)}
-          className={isSubscribed ? "text-accent" : ""}
+           className={`text-[11px] h-7 px-2 ${isSubscribed ? "text-accent" : ""}`}
         >
           {isSubscribed ? (
             <>
@@ -52,29 +52,29 @@ export function CreatorCard({ creator, isSubscribed, onToggleSubscribe }: Creato
         </Button>
       </div>
 
-      {/* Top Items - thumbnail 56x40 */}
-      <div className="space-y-3">
+       {/* Top Items */}
+       <div className="space-y-2 flex-1">
         {topItems.slice(0, 2).map(item => (
           <Link
             key={item!.id}
             to={`/content/${item!.id}`}
-            className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted/50 transition-colors"
+             className="flex items-center gap-2 p-1.5 rounded-lg hover:bg-muted/50 transition-colors"
           >
-            <div className="w-14 h-10 rounded overflow-hidden bg-surface flex-shrink-0">
+             <div className="w-12 h-9 rounded overflow-hidden bg-surface flex-shrink-0">
               <img
                 src={item!.thumb}
                 alt={item!.title}
                 className="w-full h-full object-cover"
               />
             </div>
-            <span className="text-[14px] leading-[22px] text-app line-clamp-1 flex-1">{item!.title}</span>
+             <span className="text-[12px] leading-[18px] text-app line-clamp-2 flex-1">{item!.title}</span>
           </Link>
         ))}
       </div>
 
       {/* More button */}
       <Link to={`/creators/${creator.id}`}>
-        <Button variant="outline" className="w-full mt-4 border-app text-muted-app hover:text-app">
+         <Button variant="outline" size="sm" className="w-full mt-3 border-app text-muted-app hover:text-app text-[12px]">
           더 보기
         </Button>
       </Link>

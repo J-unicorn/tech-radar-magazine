@@ -7,7 +7,7 @@ export function TechInsightBannerCard() {
   return (
     <div 
       className="h-[240px] rounded-xl p-[22px] border border-app bg-surface cursor-pointer hover:shadow-md transition-shadow flex flex-col"
-      onClick={() => navigate("/insight")}
+       onClick={() => navigate("/techinsight")}
     >
       {/* Tags row */}
       <div className="flex items-center justify-between mb-4">
@@ -26,7 +26,7 @@ export function TechInsightBannerCard() {
 
       {/* Bars visualization */}
       <div className="flex items-end gap-2 h-[48px] mb-3">
-        {techInsightBannerMock.bars.map((bar, idx) => (
+         {techInsightBannerMock.leftBars.map((bar, idx) => (
           <div
             key={idx}
             className="w-6 rounded-t transition-colors"
