@@ -39,7 +39,7 @@ export default function InsightReportPage() {
           <div className="px-10 py-8 space-y-8">
             {/* Executive Summary */}
             <section>
-              <SectionHeader>Executive Summary</SectionHeader>
+               <InsightSectionHeader>Executive Summary</InsightSectionHeader>
               
               <blockquote className="border-l-4 border-accent pl-4 py-2 mb-4">
                 <p className="text-[14px] leading-[22px] italic text-app">
@@ -59,7 +59,7 @@ export default function InsightReportPage() {
 
             {/* Trade-off Table */}
             <section>
-              <SectionHeader>Trade-off Analysis</SectionHeader>
+               <InsightSectionHeader>Trade-off Analysis</InsightSectionHeader>
               
               <div className="overflow-x-auto">
                 <table className="w-full text-[13px]">
@@ -99,7 +99,7 @@ export default function InsightReportPage() {
 
             {/* Recommendation */}
             <section>
-              <SectionHeader>{techInsightMock.recommendation.title}</SectionHeader>
+               <InsightSectionHeader>{techInsightMock.recommendation.title}</InsightSectionHeader>
               
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="p-4 rounded-lg bg-app border border-app">
@@ -137,7 +137,7 @@ export default function InsightReportPage() {
   );
 }
 
-function SectionHeader({ children }: { children: React.ReactNode }) {
+ function InsightSectionHeader({ children }: { children: React.ReactNode }) {
   return (
     <h3 
       className="text-[14px] uppercase tracking-wide font-semibold mb-4 pb-2 border-b-2"

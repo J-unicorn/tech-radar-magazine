@@ -20,7 +20,7 @@ export function CollectionCard({ collection, isBookmarked, onToggleBookmark, sho
   const totalComments = items.reduce((acc, item) => acc + (item?.statsMock.comments || 0), 0);
 
   return (
-    <div className="card-base overflow-hidden group hover:shadow-md">
+     <div className="card-base overflow-hidden group hover:shadow-md h-full flex flex-col">
       {/* Cover Image - 16:9 aspect ratio */}
       <Link to={`/collections/${collection.id}`} className="block relative aspect-[16/9] overflow-hidden">
         <img
@@ -59,16 +59,16 @@ export function CollectionCard({ collection, isBookmarked, onToggleBookmark, sho
       </Link>
 
       {/* Content */}
-      <div className="p-4">
+       <div className="p-3 flex-1 flex flex-col">
         <Link to={`/collections/${collection.id}`}>
-          <h3 className="text-[16px] leading-[24px] font-semibold text-app line-clamp-2 hover:text-accent transition-colors">
+           <h3 className="text-[14px] leading-[20px] font-semibold text-app line-clamp-2 hover:text-accent transition-colors h-[40px]">
             {collection.title}
           </h3>
         </Link>
-        <p className="text-[12px] leading-[18px] text-muted-app mt-1">{collection.subtitle}</p>
+         <p className="text-[11px] leading-[16px] text-muted-app mt-1 line-clamp-1">{collection.subtitle}</p>
         
         {/* Stats */}
-        <div className="flex items-center gap-3 mt-3 text-[12px] text-muted-app">
+         <div className="flex items-center gap-3 mt-auto pt-2 text-[11px] text-muted-app">
           <span className="flex items-center gap-1">
             <Eye className="h-3.5 w-3.5" />
             {formatViews(totalViews)}

@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { Separator } from "@/components/ui/separator";
 
 export function RankingCard() {
-  const rankingItems = mockData.layout.weeklyRankingIds
+   // Show up to 5 items
+   const rankingItems = mockData.layout.weeklyRankingIds.slice(0, 5)
     .map(id => getItemById(id))
     .filter(Boolean);
 
@@ -21,33 +22,33 @@ export function RankingCard() {
   };
 
   return (
-    <div className="card-base p-4 min-h-[360px]">
-      <h3 className="text-[20px] leading-[28px] font-semibold text-app mb-4">
+     <div className="card-base p-4">
+       <h3 className="text-[18px] leading-[26px] font-semibold text-app mb-3">
         이번 주 Tech Radar 인기
       </h3>
       <div className="space-y-0">
         {rankingItems.map((item, index) => (
           <div key={item!.id}>
-            <div className="flex items-center gap-3 h-[60px]">
+             <div className="flex items-center gap-3" style={{ minHeight: "56px" }}>
               {/* Rank Number - accent color */}
-              <span className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-[14px] font-bold text-accent">
+               <span className="flex-shrink-0 w-6 text-center text-[18px] font-bold text-accent">
                 {index + 1}
               </span>
 
               {/* Content */}
               <div className="flex-1 min-w-0">
                 <Link to={`/content/${item!.id}`}>
-                  <h4 className="text-[14px] leading-[22px] font-medium text-app line-clamp-1 hover:text-accent transition-colors">
+                   <h4 className="text-[13px] leading-[20px] font-medium text-app line-clamp-1 hover:text-accent transition-colors">
                     {item!.title}
                   </h4>
                 </Link>
                 <div className="flex items-center gap-2 mt-0.5">
                   {item!.badges.slice(0, 1).map(badge => (
-                    <Badge key={badge} variant="secondary" className={`text-[10px] px-1.5 py-0 ${getBadgeClass(badge)}`}>
+                     <Badge key={badge} variant="secondary" className={`text-[9px] px-1.5 py-0 ${getBadgeClass(badge)}`}>
                       {badge}
                     </Badge>
                   ))}
-                  <span className="text-[12px] leading-[18px] text-muted-app">
+                   <span className="text-[11px] leading-[16px] text-muted-app">
                     {getKindLabel(item!.kind)} · {item!.minutesMock}분
                   </span>
                 </div>

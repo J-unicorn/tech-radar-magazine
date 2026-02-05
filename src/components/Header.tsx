@@ -5,18 +5,20 @@ import { mockData } from "@/data/mockData";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "@/hooks/useTheme";
+ import { useWip } from "@/contexts/WipContext";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
+   const { openWip } = useWip();
 
   const handleChipClick = (chipId: string) => {
     navigate(`/tag/${chipId}`);
   };
 
   const handleInsightClick = () => {
-    navigate("/insight");
+     navigate("/techinsight");
   };
 
   return (
@@ -34,19 +36,23 @@ export function Header() {
 
           {/* Right: Actions - NO CENTER NAV */}
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="text-muted-app hover:text-app">
+             <Button variant="ghost" size="icon" className="text-muted-app hover:text-app" onClick={() => openWip()}>
               <Search className="h-5 w-5" />
             </Button>
             <Button variant="ghost" size="icon" className="text-muted-app hover:text-app" onClick={toggleTheme}>
               {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
             <div className="hidden md:flex items-center gap-2">
-              <Link to="/" className="text-[14px] leading-[22px] text-muted-app hover:text-app transition-colors px-2">
+               <button 
+                 onClick={() => openWip()} 
+                 className="text-[14px] leading-[22px] text-muted-app hover:text-app transition-colors px-2"
+               >
                 로그인
-              </Link>
+               </button>
               <Button 
                 size="sm" 
                 className="ml-2 h-10 px-4 btn-primary"
+                 onClick={() => openWip()}
               >
                 회원가입
               </Button>
@@ -67,8 +73,8 @@ export function Header() {
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-app bg-surface animate-fade-in">
           <nav className="container-padding py-4 flex flex-col gap-2">
-            <Link to="/" className="text-[14px] text-muted-app px-3 py-2">로그인</Link>
-            <Button size="sm" className="mx-3 mt-2 btn-primary">회원가입</Button>
+             <button onClick={() => { openWip(); setMobileMenuOpen(false); }} className="text-[14px] text-muted-app px-3 py-2 text-left">로그인</button>
+             <Button size="sm" className="mx-3 mt-2 btn-primary" onClick={() => { openWip(); setMobileMenuOpen(false); }}>회원가입</Button>
           </nav>
         </div>
       )}
