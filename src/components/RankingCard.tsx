@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { Separator } from "@/components/ui/separator";
 
 export function RankingCard() {
-   // Show up to 5 items
-   const rankingItems = mockData.layout.weeklyRankingIds.slice(0, 5)
+   // Show up to 7 items
+   const rankingItems = mockData.layout.weeklyRankingIds.slice(0, 7)
     .map(id => getItemById(id))
     .filter(Boolean);
 
@@ -23,13 +23,13 @@ export function RankingCard() {
 
   return (
      <div className="card-base p-4 h-full flex flex-col">
-       <h3 className="text-[18px] leading-[26px] font-semibold text-app mb-3">
+       <h3 className="text-[18px] leading-[26px] font-semibold text-app mb-3 flex-shrink-0">
         이번 주 Tech Radar 인기
       </h3>
-      <div className="flex-1 flex flex-col justify-between">
+      <div className="flex-1 overflow-auto flex flex-col justify-between min-h-0">
         {rankingItems.map((item, index) => (
           <div key={item!.id}>
-             <div className="flex items-center gap-3 py-2" style={{ minHeight: "56px" }}>
+             <div className="flex items-center gap-3 py-1.5" style={{ minHeight: "52px" }}>
               {/* Rank Number - accent color */}
                <span className="flex-shrink-0 w-7 text-center text-[20px] font-bold text-accent">
                 {index + 1}

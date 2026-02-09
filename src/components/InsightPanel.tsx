@@ -1,5 +1,6 @@
 import { Sparkles, Trophy } from "lucide-react";
-import { Item, getChipById } from "@/data/mockData";
+import { Item } from "@/data/mockData";
+import { Badge } from "@/components/ui/badge";
 
 interface InsightPanelProps {
   currentHeroItem: Item;
@@ -18,38 +19,36 @@ export function InsightPanel({ currentHeroItem }: InsightPanelProps) {
     `${currentHeroItem.statsMock.views.toLocaleString()} 조회와 ${currentHeroItem.badges[0] || "추천"} 태그로 주목받는 콘텐츠입니다.`;
 
   return (
-    <div className="card-base p-4">
-      <h3 className="text-[14px] font-semibold text-app mb-3 flex items-center gap-2">
-        <Sparkles className="w-4 h-4 text-accent" />
-        Insight
-      </h3>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
+      {/* Left card: AI bullets */}
+      <div className="card-base p-4 h-full min-h-[140px] md:min-h-[140px] flex flex-col">
+        <div className="flex items-center gap-2 mb-2">
+          <Badge variant="outline" className="text-[10px] px-1.5 py-0 border-accent text-accent font-semibold">
+            <Sparkles className="w-3 h-3 mr-1" />
+            Insight
+          </Badge>
+          <h4 className="text-[12px] font-medium text-muted-app">AI가 분석한 핵심</h4>
+        </div>
+        <ul className="space-y-2 flex-1">
+          {aiSummary.slice(0, 5).map((point, idx) => (
+            <li key={idx} className="flex items-start gap-2 text-[13px] leading-[20px] text-app">
+              <span className="text-accent font-bold mt-0.5">•</span>
+              <span className="line-clamp-2">{point}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
       
-      {/* Two symmetric cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
-        {/* Left card: AI bullets */}
-        <div className="card-base p-4 h-full min-h-[140px] md:min-h-[140px] flex flex-col">
-          <h4 className="text-[12px] font-medium text-muted-app mb-2">AI가 분석한 핵심</h4>
-          <ul className="space-y-2 flex-1">
-            {aiSummary.slice(0, 5).map((point, idx) => (
-              <li key={idx} className="flex items-start gap-2 text-[13px] leading-[20px] text-app">
-                <span className="text-accent font-bold mt-0.5">•</span>
-                <span className="line-clamp-2">{point}</span>
-              </li>
-            ))}
-          </ul>
+      {/* Right card: Tech Radar Pick */}
+      <div className="card-base p-4 h-full min-h-[140px] md:min-h-[140px] flex flex-col bg-accent/5 border-accent/20">
+        <div className="flex items-center gap-2 mb-2">
+          <Trophy className="w-4 h-4 text-accent" />
+          <span className="text-[12px] font-semibold text-accent">TECH RADAR PICK</span>
+          <span className="text-[11px] text-muted-app">오늘</span>
         </div>
-        
-        {/* Right card: Tech Radar Pick */}
-        <div className="card-base p-4 h-full min-h-[140px] md:min-h-[140px] flex flex-col bg-accent/5 border-accent/20">
-          <div className="flex items-center gap-2 mb-2">
-            <Trophy className="w-4 h-4 text-accent" />
-            <span className="text-[12px] font-semibold text-accent">TECH RADAR PICK</span>
-            <span className="text-[11px] text-muted-app">오늘</span>
-          </div>
-          <p className="text-[13px] leading-[20px] text-app line-clamp-3 flex-1">
-            {radarPickReason}
-          </p>
-        </div>
+        <p className="text-[13px] leading-[20px] text-app line-clamp-3 flex-1">
+          {radarPickReason}
+        </p>
       </div>
     </div>
   );
