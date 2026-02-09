@@ -121,7 +121,7 @@ export const mockData: MockData = {
   "layout": {
     "heroIds": ["itm_y_langgraph_adv", "itm_y_mcp_20", "itm_y_vibe_10", "itm_w_replit_vibe", "itm_w_menugen"],
     "miniIds": ["itm_y_cursor_vibe", "itm_w_stackoverflow_vibe"],
-    "weeklyRankingIds": ["itm_y_mcp_20", "itm_y_langgraph_course", "itm_w_menugen", "itm_d_n8n_tutorial", "itm_y_vibe_10"],
+    "weeklyRankingIds": ["itm_y_mcp_20", "itm_y_langgraph_course", "itm_w_menugen", "itm_d_n8n_tutorial", "itm_y_vibe_10", "itm_y_cursor_vibe", "itm_w_replit_vibe"],
     "collections": [
       {
         "id": "col_vibe_starter",
