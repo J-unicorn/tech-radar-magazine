@@ -90,7 +90,7 @@ export function Header() {
               onClick={handleInsightClick}
               className="flex-shrink-0 h-9 px-4 border-accent text-accent hover:bg-accent/10 font-medium"
             >
-              Tech Insight 클릭
+              Insight Report
             </Button>
 
             {/* Right: Chips */}

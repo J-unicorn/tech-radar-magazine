@@ -22,23 +22,23 @@ export function RankingCard() {
   };
 
   return (
-     <div className="card-base p-4">
+     <div className="card-base p-4 h-full flex flex-col">
        <h3 className="text-[18px] leading-[26px] font-semibold text-app mb-3">
         이번 주 Tech Radar 인기
       </h3>
-      <div className="space-y-0">
+      <div className="flex-1 flex flex-col justify-between">
         {rankingItems.map((item, index) => (
           <div key={item!.id}>
-             <div className="flex items-center gap-3" style={{ minHeight: "56px" }}>
+             <div className="flex items-center gap-3 py-2" style={{ minHeight: "56px" }}>
               {/* Rank Number - accent color */}
-               <span className="flex-shrink-0 w-6 text-center text-[18px] font-bold text-accent">
+               <span className="flex-shrink-0 w-7 text-center text-[20px] font-bold text-accent">
                 {index + 1}
               </span>
 
               {/* Content */}
               <div className="flex-1 min-w-0">
                 <Link to={`/content/${item!.id}`}>
-                   <h4 className="text-[13px] leading-[20px] font-medium text-app line-clamp-1 hover:text-accent transition-colors">
+                   <h4 className="text-[14px] leading-[20px] font-medium text-app line-clamp-1 hover:text-accent transition-colors">
                     {item!.title}
                   </h4>
                 </Link>
