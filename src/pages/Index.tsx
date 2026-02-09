@@ -55,22 +55,26 @@ const Index = () => {
     <div className="min-h-screen bg-app">
       <Header />
 
-      <main className="max-w-[1200px] mx-auto container-padding">
-         {/* Row A: Main Grid Section */}
+       <main className="max-w-[1200px] mx-auto container-padding">
+         {/* Row A: Top Grid — 2-row layout with Weekly spanning both */}
          <section className="py-5 md:py-6">
-          <div className="grid lg:grid-cols-12 gap-6">
-             {/* Left Column - Hero + Insight Panel (8 cols) */}
-             <div className="lg:col-span-8 space-y-4">
+          <div className="grid grid-cols-12 gap-x-6 gap-y-4">
+             {/* Hero — col-span-8, row 1 */}
+             <div className="col-span-12 lg:col-span-8">
               <HeroCarousel 
                 heroIndex={heroIndex} 
                 onIndexChange={setHeroIndex} 
               />
-               {currentHeroItem && <InsightPanel currentHeroItem={currentHeroItem} />}
             </div>
 
-             {/* Right Column - Ranking (4 cols) */}
-             <div className="lg:col-span-4">
+             {/* Weekly Ranking — col-span-4, spans both rows */}
+             <div className="col-span-12 lg:col-span-4 lg:row-span-2 h-full">
               <RankingCard />
+            </div>
+
+             {/* Insight Panel — col-span-8, row 2 */}
+             <div className="col-span-12 lg:col-span-8">
+               {currentHeroItem && <InsightPanel currentHeroItem={currentHeroItem} />}
             </div>
           </div>
         </section>

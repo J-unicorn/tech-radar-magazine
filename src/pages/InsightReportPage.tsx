@@ -1,7 +1,9 @@
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { techInsightMock } from "@/data/techInsightMock";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 
 export default function InsightReportPage() {
   return (
@@ -132,6 +134,10 @@ export default function InsightReportPage() {
             </Button>
           </footer>
         </article>
+
+        {/* Newsletter Section — only on insight page */}
+        <Separator className="my-10 border-app" />
+        <NewsletterSignup />
       </div>
     </div>
   );
